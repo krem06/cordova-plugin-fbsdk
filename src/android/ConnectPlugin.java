@@ -39,6 +39,8 @@ import com.facebook.gamingservices.GameRequestDialog;
 import com.facebook.share.widget.MessageDialog;
 import com.facebook.share.widget.ShareDialog;
 
+import com.facebook.login.LoginBehavior;
+
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
@@ -787,7 +789,7 @@ public class ConnectPlugin extends CordovaPlugin {
     }
 
     private void executeLogin(JSONArray args, CallbackContext callbackContext) throws JSONException {
-        Log.d(TAG, "login FB");
+        Log.d(TAG, "login FB custom");
 
         // #568: Reset lastGraphContext in case it would still contains the last graphApi results of a previous session (login -> graphApi -> logout -> login)
         lastGraphContext = null;
@@ -808,6 +810,8 @@ public class ConnectPlugin extends CordovaPlugin {
 
         // Set up the activity result callback to this class
         cordova.setActivityResultCallback(this);
+
+        LoginManager.getInstance().setLoginBehavior(LoginBehavior.WEB_ONLY);
         LoginManager.getInstance().logIn(cordova.getActivity(), permissions);
     }
 
