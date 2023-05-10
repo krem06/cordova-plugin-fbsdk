@@ -811,7 +811,7 @@ public class ConnectPlugin extends CordovaPlugin {
         // Set up the activity result callback to this class
         cordova.setActivityResultCallback(this);
 
-        LoginManager.getInstance().setLoginBehavior(LoginBehavior.WEB_ONLY);
+        LoginManager.getInstance().setLoginBehavior(LoginBehavior.NATIVE_ONLY);
         LoginManager.getInstance().logIn(cordova.getActivity(), permissions);
     }
 
